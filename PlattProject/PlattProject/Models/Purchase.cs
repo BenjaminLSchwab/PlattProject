@@ -23,6 +23,12 @@ namespace PlattProject.Models
         public int NumberPurchased { get; set; }
         public DateTime PurchaseDate { get; set; }
 
+        public DateTime? ShipDate { get; set; } //null if not yet shipped
+
+        [ForeignKey("Warehouse")]
+        public int? WarehouseId { get; set; } //null until warehouse has been selected
+        
+
 
     }
 
