@@ -11,9 +11,10 @@ using System;
 namespace PlattProject.Migrations
 {
     [DbContext(typeof(PlattContext))]
-    partial class PlattContextModelSnapshot : ModelSnapshot
+    [Migration("20190413163931_testingForeignKey")]
+    partial class testingForeignKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,32 +59,6 @@ namespace PlattProject.Migrations
                     b.ToTable("ItemStocks");
                 });
 
-            modelBuilder.Entity("PlattProject.Models.Purchase", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ItemId");
-
-                    b.Property<int>("NumberPurchased");
-
-                    b.Property<DateTime>("PurchaseDate");
-
-                    b.Property<DateTime?>("ShipDate");
-
-                    b.Property<int>("UserId");
-
-                    b.Property<int?>("WarehouseId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ItemId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Purchases");
-                });
-
             modelBuilder.Entity("PlattProject.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -122,19 +97,6 @@ namespace PlattProject.Migrations
                     b.HasOne("PlattProject.Models.Warehouse", "Warehouse")
                         .WithMany("ItemStocks")
                         .HasForeignKey("WarehouseId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("PlattProject.Models.Purchase", b =>
-                {
-                    b.HasOne("PlattProject.Models.Item", "Item")
-                        .WithMany()
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("PlattProject.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

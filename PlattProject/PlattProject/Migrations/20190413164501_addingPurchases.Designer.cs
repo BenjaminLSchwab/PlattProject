@@ -11,9 +11,10 @@ using System;
 namespace PlattProject.Migrations
 {
     [DbContext(typeof(PlattContext))]
-    partial class PlattContextModelSnapshot : ModelSnapshot
+    [Migration("20190413164501_addingPurchases")]
+    partial class addingPurchases
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

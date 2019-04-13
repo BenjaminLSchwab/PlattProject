@@ -11,9 +11,13 @@ namespace PlattProject.Models
         public PlattContext(DbContextOptions<PlattContext> options)
             : base(options)
         { }
-
-        //public DbSet<Blog> Blogs { get; set; }
         public DbSet<User> Users { get; set; }
-        
+        public DbSet<Item> Items { get; set; }
+        public DbSet<ItemStock> ItemStocks { get; set; }
+        public DbSet<Warehouse> Warehouses { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
+
+
+
     }
 }
