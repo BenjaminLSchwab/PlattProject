@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using PlattProject2.Models;
+using PlattProject.Models;
 
-namespace PlattProject2.Controllers
+namespace PlattProject.Controllers
 {
     public class HomeController : Controller
     {
