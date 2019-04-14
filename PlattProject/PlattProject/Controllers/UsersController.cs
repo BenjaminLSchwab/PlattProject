@@ -149,18 +149,6 @@ namespace PlattProject.Controllers
             return _context.Users.Any(e => e.Id == id);
         }
 
-        private void PopulateUsersTable()
-        {
-            _context.Database.ExecuteSqlCommand("INSERT Users (Email, Name) VALUES ('Ben@gmail.com', 'Ben Schwab')");
-            _context.Database.ExecuteSqlCommand("INSERT Users (Email, Name) VALUES ('Mike@gmail.com', 'Mike Smith')");
-            _context.Database.ExecuteSqlCommand("INSERT Users (Email, Name) VALUES ('Sarah@gmail.com', 'Sarah Vanwyhe')");
-            _context.Database.ExecuteSqlCommand("INSERT Users (Email, Name) VALUES ('Martin@yahoo.com', 'Martin Goldsmith')");
-            _context.Database.ExecuteSqlCommand("INSERT Users (Email, Name) VALUES ('Terry@yahoo.com', 'Terry Weible')");
-            _context.Database.ExecuteSqlCommand("INSERT Users (Email, Name) VALUES ('Alexa@yahoo.com', 'Alexa Bezos')");
-            _context.Database.ExecuteSqlCommand("INSERT Users (Email, Name) VALUES ('John@hotmail.com', 'John McAllister')");
-            _context.Database.ExecuteSqlCommand("INSERT Users (Email, Name) VALUES ('Abby@hotmail.com', 'Abby Marsh')");
-            _context.Database.ExecuteSqlCommand("INSERT Users (Email, Name) VALUES ('Dane@hotmail.com', 'Dane Matthews')");
-            _context.Database.ExecuteSqlCommand("INSERT Users (Email, Name) VALUES ('Trevor@hotmail.com', 'Trevor Grant')");
-        }
+
     }
 }

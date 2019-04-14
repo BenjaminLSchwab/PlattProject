@@ -49,7 +49,7 @@ namespace PlattProject
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Purchases}/{action=Manage}/");
             });
         }
     }
