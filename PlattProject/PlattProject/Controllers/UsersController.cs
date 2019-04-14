@@ -20,8 +20,7 @@ namespace PlattProject.Controllers
 
         // GET: Users
         public async Task<IActionResult> Index()
-        {
-            PopulateUsersTable();
+        {            
             return View(await _context.Users.ToListAsync());
         }
 
