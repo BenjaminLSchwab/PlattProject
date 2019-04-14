@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PlattProject.Models;
+using System.Data.SqlClient;
 
 namespace PlattProject.Controllers
 {
@@ -160,6 +161,28 @@ namespace PlattProject.Controllers
         private bool ItemStockExists(int id)
         {
             return _context.ItemStocks.Any(e => e.Id == id);
+        }
+
+        public void PopulateItemStocksTable()
+        {
+            var Random = new Random();
+            var Warehouses = _context.Warehouses;
+            var Items = _context.Items;
+            foreach (var Warehouse in Warehouses)
+            {
+                var WarehouseId = Warehouse.Id;
+                foreach (var Item in Items)
+                {
+                    var RandomNumber = Random.Next(1, 200);
+                    var ItemId = Item.Id;
+                    string sqlCommand = "INSERT ItemStocks (ItemId, WarehouseId, ItemCount) VALUES (@ItemId, @WarehouseId, @ItemCount)";
+                    var SqlParamItemId = new SqlParameter("@ItemId", ItemId);
+                    var SqlParamWarehouseId = new SqlParameter("@WarehouseId", WarehouseId);
+                    var SqlParamItemCount = new SqlParameter("@ItemCount", RandomNumber);
+                    _context.Database.ExecuteSqlCommand(sqlCommand, SqlParamItemId, SqlParamWarehouseId, SqlParamItemCount);
+
+                }
+            }
         }
     }
 }

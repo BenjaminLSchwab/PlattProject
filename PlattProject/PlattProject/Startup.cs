@@ -25,7 +25,7 @@ namespace PlattProject
         {
             services.AddMvc();
 
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=PlattProject.AspNetCore.NewDb;Trusted_Connection=True;ConnectRetryCount=0";
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=PlattProject.AspNetCore.NewDb;Trusted_Connection=True;ConnectRetryCount=0;MultipleActiveResultSets=true";
             services.AddDbContext<PlattContext>
                 (options => options.UseSqlServer(connection));
         }

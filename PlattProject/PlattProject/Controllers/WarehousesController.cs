@@ -21,7 +21,6 @@ namespace PlattProject.Controllers
         // GET: Warehouses
         public async Task<IActionResult> Index()
         {
-            PopulateWarehousesTable();
             return View(await _context.Warehouses.ToListAsync());
         }
 
