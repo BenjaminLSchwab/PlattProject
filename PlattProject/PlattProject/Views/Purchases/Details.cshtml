@@ -1,0 +1,54 @@
+﻿@model PlattProject.Models.Purchase
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Purchase</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberPurchased)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumberPurchased)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShipDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WarehouseId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WarehouseId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Item)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Item.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
