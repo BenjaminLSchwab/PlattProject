@@ -11,7 +11,6 @@ namespace PlattProject.Models
         [Key]
         public int Id { get; set; }
         public string Address { get; set; }
-        public int MyProperty { get; set; }
 
         public ICollection<ItemStock> ItemStocks { get; set; }
     }

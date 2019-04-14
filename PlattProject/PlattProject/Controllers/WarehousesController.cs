@@ -21,6 +21,7 @@ namespace PlattProject.Controllers
         // GET: Warehouses
         public async Task<IActionResult> Index()
         {
+            PopulateWarehousesTable();
             return View(await _context.Warehouses.ToListAsync());
         }
 
@@ -147,6 +148,14 @@ namespace PlattProject.Controllers
         private bool WarehouseExists(int id)
         {
             return _context.Warehouses.Any(e => e.Id == id);
+        }
+
+        private void PopulateWarehousesTable()
+        {
+            _context.Database.ExecuteSqlCommand("INSERT Warehouses (Address) VALUES ('8364 N. Holly Ave. Glen Allen, VA 23059')");
+            _context.Database.ExecuteSqlCommand("INSERT Warehouses (Address) VALUES ('8666 Joy Ridge St. Amarillo, TX 79106')");
+            _context.Database.ExecuteSqlCommand("INSERT Warehouses (Address) VALUES ('8847 Wagon St. Palm Coast, FL 32137')");
+
         }
     }
 }
