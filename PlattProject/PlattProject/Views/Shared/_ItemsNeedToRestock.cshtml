@@ -1,0 +1,35 @@
+﻿@model IEnumerable<PlattProject.Models.ItemStock>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ItemCount)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Item)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Warehouse)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Warehouse.Address)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

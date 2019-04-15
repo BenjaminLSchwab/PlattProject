@@ -32,6 +32,12 @@ namespace PlattProject.Controllers
             return View();
         }
 
+        // GET: Purchases/Analytics
+        public ActionResult Analytics()
+        {
+            return View();
+        }
+
         // GET: Purchases/Details/5
         public async Task<IActionResult> Details(int? id)
         {
