@@ -2,10 +2,10 @@
 
 <h2>Analytics</h2>
 
-
-    @Html.Partial("_BestCustomers", Model.BestCustomerVms)
-    @Html.Partial("_TopSellingItems", Model.ItemsSoldVms)
-    @Html.Partial("_LargestOrders", Model.LargestOrders)
-    @Html.Partial("_ItemsNeedToRestock", Model.ItemRestocks)
+<a asp-action="ClearAllTables">Clear Database</a>
+@Html.Partial("_BestCustomers", Model.BestCustomerVms)
+@Html.Partial("_TopSellingItems", Model.ItemsSoldVms)
+@Html.Partial("_LargestOrders", Model.LargestOrders)
+@Html.Partial("_ItemsNeedToRestock", Model.ItemRestocks)
 
 
