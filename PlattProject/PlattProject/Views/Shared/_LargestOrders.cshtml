@@ -1,39 +1,37 @@
-﻿@model IEnumerable<PlattProject.Models.Purchase>
+﻿@model IEnumerable<PlattProject.ViewModels.LargestOrderVm>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<h3>Largest Orders</h3>
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.NumberPurchased)
-                </th>
             <th>
-                @Html.DisplayNameFor(model => model.Item)
+                Name
+            </th>
+            <th>
+                Item
             </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PurchaseDate)
+                    Number Purchased
                 </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
+                <th>
+                    Purchase Date
+                </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.NumberPurchased)
+                @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Item.Name)
+                @Html.DisplayFor(modelItem => item.ItemName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PurchaseDate)
+                @Html.DisplayFor(modelItem => item.Purchase.NumberPurchased)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.User.Name)
+                @Html.DisplayFor(modelItem => item.Purchase.PurchaseDate)
             </td>
         </tr>
 }

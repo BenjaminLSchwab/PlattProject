@@ -11,11 +11,14 @@ namespace PlattProject.ViewModels
         public AnalyticsVm()
         {
             BestCustomerVms = new List<BestCustomerVm>();
+            ItemRestocks = new List<ItemRestockVm>();
+            LargestOrders = new List<LargestOrderVm>();
+            ItemsSoldVms = new List<ItemsSoldVm>();
         }
 
         public List<BestCustomerVm> BestCustomerVms;
-        public IEnumerable<ItemStock> ItemStocks;
-        public IEnumerable<Purchase> Purchases;
-        public IEnumerable<ItemsSoldVm> ItemsSoldVms;
+        public List<ItemRestockVm> ItemRestocks;
+        public List<LargestOrderVm> LargestOrders;
+        public List<ItemsSoldVm> ItemsSoldVms;
     }
 }

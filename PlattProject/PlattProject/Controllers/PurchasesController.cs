@@ -36,17 +36,83 @@ namespace PlattProject.Controllers
         // GET: Purchases/Analytics
         public ActionResult Analytics()
         {
-            var billy = new BestCustomerVm();
-            billy.UserId = 1;
-            billy.Email = "a";
-            billy.Name = "Billy";
-            billy.AmountSpent = 1;
-            billy.NumberOfOrders = 1;
+            var model = new AnalyticsVm();
 
-            var stuff = new AnalyticsVm();
-            stuff.BestCustomerVms.Add(billy);
+            var bestCustomers = new List<BestCustomerVm>();
+            foreach (var purchase in _context.Purchases)
+            {
+                var item = _context.Items.Find(purchase.ItemId);
+                _context.Users.Find(purchase.UserId);
 
-            return View(stuff);
+                //if user is already on list, add purchase stats to their entry
+                if (bestCustomers.Where(c => c.UserId == purchase.UserId).Count() > 0)
+                {
+                    var customer = bestCustomers.Where(c => c.UserId == purchase.UserId).FirstOrDefault();
+                    customer.NumberOfOrders++;
+                    customer.AmountSpent += item.Cost * purchase.NumberPurchased;
+                }
+                else
+                {
+                    var customer = new BestCustomerVm();
+                    customer.UserId = purchase.UserId;
+                    customer.Name = purchase.User.Name;
+                    customer.Email = purchase.User.Email;
+                    customer.AmountSpent = item.Cost * purchase.NumberPurchased;
+                    customer.NumberOfOrders = 1;
+                    bestCustomers.Add(customer);
+                }
+            }
+            model.BestCustomerVms = bestCustomers.OrderBy(x => x.AmountSpent).Reverse().ToList();
+
+            var topSellingItems = new List<ItemsSoldVm>();
+            foreach (var purchase in _context.Purchases)
+            {
+                var PurchaseItem = _context.Items.Find(purchase.ItemId);
+                if (topSellingItems.Where(i => i.Id == purchase.ItemId).Count() > 0)
+                {
+                    var item = topSellingItems.Where(i => i.Id == purchase.ItemId).FirstOrDefault();
+                    item.NumberSold += purchase.NumberPurchased;
+                }
+                else
+                {
+                    var item = new ItemsSoldVm();
+                    item.Id = purchase.ItemId;
+                    item.Name = PurchaseItem.Name;
+                    item.Cost = PurchaseItem.Cost;
+                    item.Description = PurchaseItem.Description;
+                    item.NumberSold = purchase.NumberPurchased;
+                    topSellingItems.Add(item);
+                }
+            }
+            model.ItemsSoldVms = topSellingItems.OrderBy(x => x.NumberSold).Reverse().ToList();
+
+            var largestOrders = new List<LargestOrderVm>();
+            foreach (var purchase in _context.Purchases)
+            {
+                var item = _context.Items.Find(purchase.ItemId);
+                var user = _context.Users.Find(purchase.UserId);
+                var order = new LargestOrderVm();
+                order.ItemName = item.Name;
+                order.Purchase = purchase;
+                order.UserName = user.Name;
+                largestOrders.Add(order);
+            }
+            model.LargestOrders = largestOrders.OrderBy(x => x.Purchase.NumberPurchased).Reverse().ToList();
+
+            var itemsNeedRestock = new List<ItemRestockVm>();
+            foreach (var itemStock in _context.ItemStocks)
+            {
+                var item = _context.Items.Find(itemStock.ItemId);
+                var warehouse = _context.Warehouses.Find(itemStock.WarehouseId);
+                var itemRestock = new ItemRestockVm();
+                itemRestock.ItemStock = itemStock;
+                itemRestock.ItemName = item.Name;
+                itemRestock.WarehouseAddress = warehouse.Address;
+                itemsNeedRestock.Add(itemRestock);
+            }
+            model.ItemRestocks = itemsNeedRestock.OrderBy(x => x.ItemStock.ItemCount).ToList();
+
+            return View(model);
         }
 
         // GET: Purchases/Details/5
@@ -306,7 +372,7 @@ namespace PlattProject.Controllers
 
                 purchase.ShipDate = PurchaseDate.AddDays(4);
 
-                randomNum = random.Next(0, 10);
+                randomNum = random.Next(1, 10);
                 purchase.NumberPurchased = randomNum;
 
                 _context.Purchases.Add(purchase);

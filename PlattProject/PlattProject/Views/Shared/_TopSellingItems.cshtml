@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<PlattProject.ViewModels.ItemsSoldVm>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<h3>Top Selling Items</h3>
 <table class="table">
     <thead>
         <tr>
@@ -16,7 +14,7 @@
                     @Html.DisplayNameFor(model => model.Cost)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.NumberSold)
+                    Number Sold
                 </th>
         </tr>
     </thead>
@@ -30,7 +28,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cost)
+                $@Html.DisplayFor(modelItem => item.Cost).00
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NumberSold)

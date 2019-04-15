@@ -1,19 +1,17 @@
-﻿@model IEnumerable<PlattProject.Models.ItemStock>
+﻿@model IEnumerable<PlattProject.ViewModels.ItemRestockVm>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<h3>Items That Need To Be Restocked</h3>
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.ItemCount)
-                </th>
             <th>
-                @Html.DisplayNameFor(model => model.Item)
+                Warehouse Address
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Warehouse)
+                Item Needed
+            </th>
+            <th>
+                Stock Left
             </th>
         </tr>
     </thead>
@@ -21,13 +19,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ItemCount)
+                @Html.DisplayFor(modelItem => item.WarehouseAddress)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Item.Name)
+                @Html.DisplayFor(modelItem => item.ItemName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Warehouse.Address)
+                @Html.DisplayFor(modelItem => item.ItemStock.ItemCount)
             </td>
         </tr>
 }

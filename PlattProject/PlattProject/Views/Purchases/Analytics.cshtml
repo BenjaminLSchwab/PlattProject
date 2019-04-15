@@ -4,10 +4,8 @@
 
 
     @Html.Partial("_BestCustomers", Model.BestCustomerVms)
-
-
-    @*@Html.Partial("_TopSellingItems", Model.ItemsSoldVms)
-    @Html.Partial("_LargestOrders", Model.Purchases)
-    @Html.Partial("_ItemsNeedToRestock", Model.ItemStocks)*@
+    @Html.Partial("_TopSellingItems", Model.ItemsSoldVms)
+    @Html.Partial("_LargestOrders", Model.LargestOrders)
+    @Html.Partial("_ItemsNeedToRestock", Model.ItemRestocks)
 
 
