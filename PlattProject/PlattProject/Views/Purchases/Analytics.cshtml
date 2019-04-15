@@ -1,9 +1,13 @@
-﻿
-@{
-    ViewData["Title"] = "Analytics";
-}
+﻿@model PlattProject.ViewModels.AnalyticsVm
 
 <h2>Analytics</h2>
 
+
+    @Html.Partial("_BestCustomers", Model.BestCustomerVms)
+
+
+    @*@Html.Partial("_TopSellingItems", Model.ItemsSoldVms)
+    @Html.Partial("_LargestOrders", Model.Purchases)
+    @Html.Partial("_ItemsNeedToRestock", Model.ItemStocks)*@
 
 

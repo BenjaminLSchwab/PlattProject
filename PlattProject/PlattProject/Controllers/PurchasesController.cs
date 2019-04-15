@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PlattProject.Models;
+using PlattProject.ViewModels;
 
 namespace PlattProject.Controllers
 {
@@ -35,7 +36,17 @@ namespace PlattProject.Controllers
         // GET: Purchases/Analytics
         public ActionResult Analytics()
         {
-            return View();
+            var billy = new BestCustomerVm();
+            billy.UserId = 1;
+            billy.Email = "a";
+            billy.Name = "Billy";
+            billy.AmountSpent = 1;
+            billy.NumberOfOrders = 1;
+
+            var stuff = new AnalyticsVm();
+            stuff.BestCustomerVms.Add(billy);
+
+            return View(stuff);
         }
 
         // GET: Purchases/Details/5
@@ -168,6 +179,21 @@ namespace PlattProject.Controllers
             _context.Purchases.Remove(purchase);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        public PartialViewResult BestCustomers()
+        {
+            var Customers = new List<BestCustomerVm>();
+            var billy = new BestCustomerVm();
+            billy.UserId = 1;
+            billy.Email = "a";
+            billy.Name = "Billy";
+            billy.AmountSpent = 1;
+            billy.NumberOfOrders = 1;
+
+            Customers.Add(billy);
+
+            return PartialView("_BestCustomers",Customers);
         }
 
         private bool PurchaseExists(int id)

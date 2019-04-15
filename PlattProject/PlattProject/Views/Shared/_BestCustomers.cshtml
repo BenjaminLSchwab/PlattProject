@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PlattProject.Models.User>
+﻿@model IEnumerable<PlattProject.ViewModels.BestCustomerVm>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -6,13 +6,18 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfOrders)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountSpent)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -25,9 +30,10 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                @Html.DisplayFor(modelItem => item.NumberOfOrders)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountSpent)
             </td>
         </tr>
 }
